@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "github.com/mtheusvalle/commons/api";
+
+package api;
+
+message Order {
+    string ID = 1;
+    string customerID = 2;
+    string Status = 3;
+    repeated Item Items = 4;
+}
+
+service OrderService {
+    rpc CreateOrder(CreateOrderRequest) returns (Order);
+}
+
+message Item {
+    string ID = 1;
+    string Name = 2;
+    string Quantity = 3;
+    float PriceID = 4;
+}
+
+message ItemsWithQuantify {
+    string ID = 1;
+    int32 Quantity = 2;
+}
+
+message CreateOrderRequest {
+    string customerID = 1;
+    repeated ItemsWithQuantify Items = 2;
+}
